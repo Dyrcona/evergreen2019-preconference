@@ -1,0 +1,34 @@
+What?
+-----
+
+What we're going to talk about.
+
+[role="incremental"]
+- Perl
+- SRFSH
+- Evergreen
+- OpenSRF
+
+Who, Me?
+--------
+
+Who am I?
+
+[role="incremental"]
+* ILS Manager for CW MARS, INC.
+* Evergreen Core Committer/Contributor
+* Contract Programmer
+* Fan of:
+** Stanley Kubrick
+** Peter Sellers
+
+Yes, You!
+---------
+
+Who are you?
+
+[role="incremental"]
+- Advanced, i.e. curious, User
+- Who uses GNU/Linux command line?
+- Who knows any Perl?
+- Who knows any SQL?

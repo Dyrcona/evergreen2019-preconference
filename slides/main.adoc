@@ -1,0 +1,12 @@
+Cronscript.pm, Or How I Learned to Stop Worrying and Program the Evergreen Back End
+===================================================================================
+:author: Jason Stephenson, ILS Manager, CW MARS, INC.
+:copyright: 2019 Jason Stephenson, licensed under a Creative Commons Attribution-ShareAlike 4.0 International License
+:backend: slidy
+:data-uri:
+:icons:
+:duration: 180
+
+include::license.adoc[]
+include::introduction.adoc[]
+
