@@ -6,8 +6,8 @@ What we're going to talk about.
 [role="incremental"]
 - Perl
 - SRFSH
-- Evergreen
 - OpenSRF
+- Evergreen
 
 Who, Me?
 --------
@@ -32,3 +32,4 @@ Who are you?
 - Who uses GNU/Linux command line?
 - Who knows any Perl?
 - Who knows any SQL?
+
