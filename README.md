@@ -34,13 +34,21 @@ The presentaion was built using asciidoc and the slidy backend:
 ```
 asciidoc -b slidy -o presentation.html slides/main.adoc
 ```
+
+You may also take advantage of the included Makefile to generate the
+presentation:
+
+```
+make presentation
+```
+
 ## Author
 
 **Jason Stephenson** - [Sigio](http://www.sigio.com/)
 
 ## License
 
-The presentation is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+The presentation, and this documentation, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
-The examples are licensed under the [GNU General Public License, Version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) or, at your option, any later version.
+The examples are licensed under the [GNU General Public License, Version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html), or (at your option) any later version.
 
