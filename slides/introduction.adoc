@@ -1,14 +1,3 @@
-What?
------
-
-What we're going to talk about.
-
-[role="incremental"]
-- OpenSRF
-- Evergreen
-- SRFSH
-- Perl
-
 Who, Me?
 --------
 
@@ -35,4 +24,15 @@ Who are you?
 - Who uses GNU/Linux command line?
 - Who knows any Perl?
 - Who knows any SQL?
+
+What?
+-----
+
+What you're going to learn.
+
+[role="incremental"]
+- OpenSRF
+- Evergreen
+- srfsh
+- Perl
 
