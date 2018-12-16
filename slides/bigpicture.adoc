@@ -37,9 +37,10 @@ Evergreen Integrated Library System
 [role="incremental"]
 * Bunch of services implemented on OpenSRF
 * Implemented in C and Perl
-* Client(s) for accessing those services
+* Clients for accessing those services
 * Implemented in JavaScript and Perl
 * Bunch of utilities built on the Evergreen services
 * Implemented in C and Perl and srfsh and a tiny bit of Ruby (for now)
 * A few utilities that break the rules
+* Some Perl modules to make utility programming easier
 
