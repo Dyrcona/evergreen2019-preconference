@@ -1,0 +1,44 @@
+The Big Picture
+---------------
+
+image:bigpicture.jpg[The Big Board in the War Room]
+
+(Image source: https://m.media-amazon.com/images/M/MV5BOGY0Mjk4OWYtMTRhZi00NmU2LWI3OWYtZWFiNGNmYWVmNjUxXkEyXkFqcGdeQXVyNjkxMjM5Nzc@._V1_.jpg[IMDB.com/Amazon.com])
+
+OpenSRF
+-------
+
+Open Scalable Request Framework
+
+[role="incremental"]
+* Evergreen's Backbone
+* Implemented in C and Perl
+* Has its own shell: srfsh
+* Accessible via various web gateways (Apache)
+** gateway (deprecated)
+** osrf-http-translator (deprecated?)
+** osrf-gateway-v1
+** osrf-websocket-translator
+** xml-rpc
+* Programmable via a variety of languages
+** C
+** Perl
+** JavaScript
+** Python
+** Java
+** And, more!
+* Back end services communicate via XMPP (Ejabberd)
+
+Evergreen
+---------
+
+Evergreen Integrated Library System
+
+[role="incremental"]
+* Bunch of services implemented on OpenSRF
+* Implemented in C and Perl
+* Client(s) for accessing those services
+* Implemented in JavaScript and Perl
+* Bunch of utilities built on those services
+* Implemented in C and Perl and srfsh and a tiny bit of Ruby (for now)
+

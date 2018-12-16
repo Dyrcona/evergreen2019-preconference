@@ -4,10 +4,10 @@ What?
 What we're going to talk about.
 
 [role="incremental"]
-- Perl
-- SRFSH
 - OpenSRF
 - Evergreen
+- SRFSH
+- Perl
 
 Who, Me?
 --------
@@ -18,9 +18,12 @@ Who am I?
 * ILS Manager for CW MARS, INC.
 * Evergreen Core Committer/Contributor
 * Contract Programmer
-* Fan of:
-** Stanley Kubrick
-** Peter Sellers
+* Fan of Stanley Kubrick and  Peter Sellers
++
+image:kubrick-sellers2.jpg[Stanley Kubrick and Peter Sellers on the set of Dr. Strangelove]
++
+(Image Source: https://m.media-amazon.com/images/M/MV5BYzIxNThmOTctNzdhNy00YjYwLWE4ZjctMGNhYTZjNTc5YjliXkEyXkFqcGdeQXVyODA1MDc5NjQ@._V1_SY1000_CR0,0,1394,1000_AL_.jpg[IMDB.com/Amazon.com])
+
 
 Yes, You!
 ---------
