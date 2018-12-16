@@ -39,6 +39,7 @@ Evergreen Integrated Library System
 * Implemented in C and Perl
 * Client(s) for accessing those services
 * Implemented in JavaScript and Perl
-* Bunch of utilities built on those services
+* Bunch of utilities built on the Evergreen services
 * Implemented in C and Perl and srfsh and a tiny bit of Ruby (for now)
+* A few utilities that break the rules
 
