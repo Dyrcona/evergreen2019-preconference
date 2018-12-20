@@ -16,7 +16,7 @@
 # and/or HTML README.
 
 presentation:
-	asciidoc -b slidy -o presentation.html slides/main.adoc
+	asciidoc -f asciidoc.conf -b slidy -o presentation.html slides/main.adoc
 
 README:
 	markdown README.md > README.html
