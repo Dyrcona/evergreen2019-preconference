@@ -3,9 +3,9 @@
 This is the source repository for the slides and example programs from
 Jason Stephenson's Evergreen 2019 Pre-Conference presentation on
 learning to program the Evergeen ILS back end.  The presentation was
-delivered at the 2019 Evergreen ILS International Conference in Valley
-Forge, Pennsylvania on Wednesday, April 24, 2019 from 1:30 PM EDT to
-4:30 PM EDT.
+delivered at the 2019 Evergreen ILS International Conference in King
+of Prussia, Pennsylvania on Wednesday, April 24, 2019 from 1:30 PM EDT
+to 4:30 PM EDT.
 
 ## Getting Started
 
