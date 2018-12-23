@@ -40,6 +40,7 @@ OpenSRF, continued
 * Evergreen's Backbone
 * Implemented in C and Perl
 * Has its own shell: srfsh
+* Back end services communicate via XMPP (Ejabberd)
 * Accessible via various web gateways (Apache)
 [role="incremental"]
 ** gateway (deprecated)
@@ -55,7 +56,6 @@ OpenSRF, continued
 ** Python
 ** Java
 ** And, more!
-* Back end services communicate via XMPP (Ejabberd)
 
 Evergreen
 ---------
@@ -72,4 +72,5 @@ Evergreen Integrated Library System
 * Implemented in C and Perl and srfsh and a tiny bit of Ruby (for now)
 * A few utilities that break the rules
 * Some Perl modules to make utility programming easier
+* F/OSS
 
