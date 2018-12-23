@@ -11,16 +11,44 @@ OpenSRF
 Open Scalable Request Framework
 
 [role="incremental"]
+* Open
+[role="incremental"]
+** F/OSS
+** Extensible
+** Not just for Evergreen
+* Scalable
+[role="incremental"]
+** Can run on multiple computers
+** Multiple access points
+** Still one system
+** Just as slow on 64 servers as it is one!
+** Just kidding!
+** Not really.
+* Request
+[role="incremental"]
+** Client/Server
+** Message passing
+* Framework
+[role="incremental"]
+** Something to build on top of
+** Serves a purpose
+
+OpenSRF, continued
+------------------
+
+[role="incremental"]
 * Evergreen's Backbone
 * Implemented in C and Perl
 * Has its own shell: srfsh
 * Accessible via various web gateways (Apache)
+[role="incremental"]
 ** gateway (deprecated)
 ** osrf-http-translator (deprecated?)
 ** osrf-gateway-v1
 ** osrf-websocket-translator
 ** xml-rpc
 * Programmable via a variety of languages
+[role="incremental"]
 ** C
 ** Perl
 ** JavaScript
@@ -35,6 +63,7 @@ Evergreen
 Evergreen Integrated Library System
 
 [role="incremental"]
+* Software system for managing library services
 * Bunch of services implemented on OpenSRF
 * Implemented in C and Perl
 * Clients for accessing those services
