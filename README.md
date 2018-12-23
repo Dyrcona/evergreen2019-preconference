@@ -32,7 +32,7 @@ programs.
 The presentaion was built using asciidoc and the slidy backend:
 
 ```
-asciidoc -b slidy -o presentation.html slides/main.adoc
+asciidoc -f asciidoc.conf -b slidy -o presentation.html slides/main.adoc
 ```
 
 You may also take advantage of the included Makefile to generate the
