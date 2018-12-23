@@ -21,7 +21,7 @@ Open Scalable Request Framework
 ** Can run on multiple computers
 ** Multiple access points
 ** Still one system
-** Just as slow on 64 servers as it is one!
+** Just as slow on 64 servers as it is on one!
 ** Just kidding!
 ** Not really.
 * Request
