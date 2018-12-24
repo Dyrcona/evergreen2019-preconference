@@ -1,0 +1,260 @@
+srfsh
+-----
+
+Starting srfsh
+~~~~~~~~~~~~~~
+
+* Make sure `/openils/bin` is in the `PATH`.
+* Type `srfsh` on the command line.
+* Prompt changes to `srfsh#`.
+* Type `help` to get some documentation.
+* Type `quit` to quit.
+* Configuration in `~/.srfsh.xml`.
+* Command history in `~/.srfsh_history`.
+
+Variables
+---------
+* pretty_print
+* raw_print
+
+Values
+~~~~~~
+* true
+* false
+
+.Printing a Variable
+--------------------
+srfsh# print pretty_print
+pretty_print = true
+srfsh# print raw_print
+raw_print = false
+--------------------
+
+.Setting a Variable
+-------------------
+srfsh# set pretty_print false
+pretty_print = false
+srfsh# set raw_print true
+raw_print = true
+-------------------
+
+Commands
+--------
+
+.introspect
+----
+introspect <service> ["method-name"]
+----
+.request
+----
+request <service> <method> [ <JSON formatted string of params> ]
+----
+.login
+----
+login <username> <password> [type] [org_unit] [workstation]
+----
+.open
+----
+open <service>
+----
+.close
+----
+close <service>
+----
+.!
+----
+!<command> [args]
+----
+
+Introspect a Service
+--------------------
+
+----
+srfsh# introspect open-ils.auth
+--> open-ils.auth
+
+Received Data: {
+  "api_name":"open-ils.auth.authenticate.init",
+  "method":"oilsAuthInit",
+  "service":"open-ils.auth",
+  "notes":"Start the authentication process and returns the intermediate authentication seed PARAMS( username )",
+  "argc":1,
+  "sysmethod":0,
+  "atomic":0,
+  "cachable":0
+}
+
+Received Data: {
+  "api_name":"open-ils.auth.authenticate.init.barcode",
+  "method":"oilsAuthInitBarcode",
+  "service":"open-ils.auth",
+  "notes":"Start the authentication process using a patron barcode and return the intermediate authentication seed. PARAMS(barcode)",
+  "argc":1,
+  "sysmethod":0,
+  "atomic":0,
+  "cachable":0
+...
+----
+
+Introspect a Method
+-------------------
+
+----
+srfsh# introspect open-ils.auth "open-ils.auth.session.retrieve"
+--> open-ils.auth
+
+Received Data: {
+  "api_name":"open-ils.auth.session.retrieve",
+  "method":"oilsAuthSessionRetrieve",
+  "service":"open-ils.auth",
+  "notes":"Pass in the auth token and this retrieves the user object.  By default, the auth timeout is reset when this call is made.  If a second non-zero parameter is passed, the auth timeout info is returned to the caller along with the user object.  If a 3rd non-zero parameter is passed, the auth timeout will not be reset.Returns the user object (password blanked) for the given login session PARAMS( authToken[, returnTime[, doNotResetSession]] )",
+  "argc":1,
+  "sysmethod":0,
+  "atomic":0,
+  "cachable":0
+}
+----
+
+Another Example
+---------------
+
+----
+srfsh# introspect open-ils.trigger "open-ils.trigger.event.run_all_pending"
+--> open-ils.trigger
+
+Received Data: {
+  "__c":"OpenILS_Application_Trigger",
+  "__p":{
+    "remote":0,
+    "package":"OpenILS::Application::Trigger",
+    "argc":0,
+    "server_class":"open-ils.trigger",
+    "method":"run_all_events",
+    "api_name":"open-ils.trigger.event.run_all_pending",
+    "api_level":1,
+    "object_hint":"OpenILS_Application_Trigger",
+    "stream":0
+  }
+}
+----
+
+Sidebar: Listing Services
+-------------------------
+
+----
+$ osrf_control -l --diagnostic
+* open-ils.acq             [2148] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.actor           [2199] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.auth            [2336] uptime=04:56       cputime=00:00:00    #drones=1/15   6%
+* open-ils.auth_internal   [2347] uptime=04:56       cputime=00:00:00    #drones=1/15   6%
+* open-ils.auth_proxy      [2207] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.booking         [2159] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.cat             [2167] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.circ            [2191] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.collections     [2231] uptime=04:57       cputime=00:00:00    #drones=1/10  10%
+* open-ils.cstore          [2358] uptime=04:56       cputime=00:00:00    #drones=1/15   6%
+* open-ils.ebook_api       [2303] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.fielder         [2271] uptime=04:57       cputime=00:00:00    #drones=5/15  33%
+* open-ils.hold-targeter   [2295] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.justintime      [2223] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.pcrud           [2391] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.permacrud       [2247] uptime=04:58       cputime=00:00:00    #drones=5/15  33%
+* open-ils.qstore          [2370] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* open-ils.reporter        [2239] uptime=04:58       cputime=00:00:00    #drones=1/10  10%
+* open-ils.reporter-store  [2388] uptime=04:57       cputime=00:00:00    #drones=1/10  10%
+* open-ils.search          [2183] uptime=04:58       cputime=00:00:00    #drones=1/15   6%
+* open-ils.serial          [2287] uptime=04:58       cputime=00:00:00    #drones=5/15  33%
+* open-ils.storage         [2215] uptime=04:58       cputime=00:00:01    #drones=1/10  10%
+* open-ils.supercat        [2175] uptime=04:58       cputime=00:00:00    #drones=1/15   6%
+* open-ils.trigger         [2255] uptime=04:58       cputime=00:00:00    #drones=1/15   6%
+* open-ils.url_verify      [2263] uptime=04:58       cputime=00:00:00    #drones=1/15   6%
+* open-ils.vandelay        [2279] uptime=04:58       cputime=00:00:00    #drones=1/15   6%
+* opensrf.dbmath           [2325] uptime=04:57       cputime=00:00:00    #drones=1/15   6%
+* opensrf.math             [2314] uptime=04:58       cputime=00:00:00    #drones=1/15   6%
+* opensrf.settings         [2138] uptime=04:58       cputime=00:00:00    #drones=5/15  33%
+* router                   [2130] uptime=05:00       cputime=00:00:00    
+* router                   [2131] uptime=05:00       cputime=00:00:00    
+-----
+
+request
+-------
+
+.No Argument
+----
+srfsh# request open-ils.trigger open-ils.trigrer.event.run_all_pending
+----
+
+.One Argument
+----
+srfsh# request open-ils.trigger open-ils.trigger.event.fire 70249240
+----
+
+.Multiple Arguments
+----
+srfsh# request open-ils.search open-ils.search.biblio.copy_counts.location.summary.retrieve 4211388, 159, 2
+----
+
+.Complex Argument
+----
+srfsh# request open-ils.auth open-ils.auth.login {"username": "admin", "password": "demo123", "type": "staff", "workstation": "BR1-N240WU"}
+----
+
+login
+-----
+
+----
+srfsh# login admin demo123 staff BR1 BR1-N240WU
+
+Received Data: "$2a$10$3D2zi9OjM0HOXJg399gNLO"
+...
+Received Data: {
+  "ilsevent":0,
+  "textcode":"SUCCESS",
+  "desc":"Success",
+  "pid":2355,
+  "stacktrace":"oils_auth.c:636",
+  "payload":{
+    "authtoken":"883c6c7e85a8daaa91cdcd5747cb8207",
+    "authtime":7200
+  }
+}
+----
+
+Logging Out
+-----------
+
+----
+srfsh# request open-ils.auth open-ils.auth.session.delete "883c6c7e85a8daaa91cdcd5747cb8207"
+
+Received Data: "883c6c7e85a8daaa91cdcd5747cb8207"
+----
+
+open
+----
+
+----
+srfsh# open open-ils.cstore
+Service open-ils.cstore opened
+----
+
+close
+-----
+
+----
+srfsh# close open-ils.cstore
+Service "open-ils.cstore" closed
+----
+
+Scripts
+-------
+
+.Open-ILS/src/support-scripts/purge_pending_users.srfsh
+-----
+#!/openils/bin/srfsh
+open open-ils.cstore
+request open-ils.cstore open-ils.cstore.transaction.begin
+request open-ils.cstore open-ils.cstore.json_query {"from":["staging.purge_pending_users"]}
+request open-ils.cstore open-ils.cstore.transaction.commit
+close open-ils.cstore
+----
+
