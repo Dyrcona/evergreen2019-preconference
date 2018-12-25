@@ -1,8 +1,12 @@
 srfsh
 -----
 
+image:srfsh.jpg[Peter Sellers as Group Captain Mandrake]
+
+(Image Source: https://www.imdb.com/title/tt0057012/mediaviewer/rm1382974464[IMDB.com])
+
 Starting srfsh
-~~~~~~~~~~~~~~
+--------------
 
 * Make sure `/openils/bin` is in the `PATH`.
 * Type `srfsh` on the command line.
@@ -61,9 +65,25 @@ open <service>
 ----
 close <service>
 ----
+
+More Commands
+-------------
+
+.relay
+----
+relay <service> <method>
+----
 .!
 ----
 !<command> [args]
+----
+.time
+----
+time
+----
+.math_bench
+----
+math_bench <num_batches> [0|1|2]
 ----
 
 Introspect a Service
@@ -181,7 +201,7 @@ request
 
 .No Argument
 ----
-srfsh# request open-ils.trigger open-ils.trigrer.event.run_all_pending
+srfsh# request open-ils.trigger open-ils.trigger.event.run_all_pending
 ----
 
 .One Argument
@@ -199,6 +219,18 @@ srfsh# request open-ils.search open-ils.search.biblio.copy_counts.location.summa
 srfsh# request open-ils.auth open-ils.auth.login {"username": "admin", "password": "demo123", "type": "staff", "workstation": "BR1-N240WU"}
 ----
 
+requests, cont.
+---------------
+
+.With Authtoken
+----
+srfsh# set pretty_print false
+pretty_print = false
+srfsh# request open-ils.actor open-ils.actor.user.fleshed.retrieve "945589d017feabc729896739c91faaaa" 4
+
+Received Data: {"__c":"au","__p":[[{"__c":"aua","__p":["MAILING","Dodge center","USA","Dodge",3,"55927","MN","5150 Dinner Expressway","",4,"t","f",null,"f"]}],[{"__c":"ac","__p":["t","99999355250",4,4]}],null,null,null,[],[],[],null,null,null,"t",null,"f",{"__c":"aua","__p":["MAILING","Dodge center","USA","Dodge",3,"55927","MN","5150 Dinner Expressway","",4,"t","f",null,"f"]},{"__c":"ac","__p":["t","99999355250",4,4]},0,0,"2018-12-17T10:23:11-0500","0.00",null,null,null,null,"2018-12-18T10:23:11-0500","Jones","Gregory",5,4,3,null,null,null,"none",{"__c":"aua","__p":["MAILING","Dodge center","USA","Dodge",3,"55927","MN","5150 Dinner Expressway","",4,"t","f",null,"f"]},"f",1,null,null,null,null,2,"",1,null,"f",4,"99999355250",null,"f","2018-12-17T10:23:11-0500",null,null,null,null,null,null,null,[],"f",null,null,null,null,null,null,null,null,null,[]]}
+----
+
 login
 -----
 
@@ -214,7 +246,7 @@ Received Data: {
   "pid":2355,
   "stacktrace":"oils_auth.c:636",
   "payload":{
-    "authtoken":"883c6c7e85a8daaa91cdcd5747cb8207",
+    "authtoken":"945589d017feabc729896739c91faaaa",
     "authtime":7200
   }
 }
@@ -224,9 +256,9 @@ Logging Out
 -----------
 
 ----
-srfsh# request open-ils.auth open-ils.auth.session.delete "883c6c7e85a8daaa91cdcd5747cb8207"
+srfsh# request open-ils.auth open-ils.auth.session.delete "945589d017feabc729896739c91faaaa"
 
-Received Data: "883c6c7e85a8daaa91cdcd5747cb8207"
+Received Data: "945589d017feabc729896739c91faaaa"
 ----
 
 open
