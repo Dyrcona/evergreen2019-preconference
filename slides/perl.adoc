@@ -1,0 +1,6 @@
+Perl
+-----
+
+image:perl.jpg[Slim Pickens as Major Kong]
+
+(Image Source: https://www.imdb.com/title/tt0057012/mediaviewer/rm3357313792[IMDB.com])
