@@ -575,10 +575,9 @@ Scripts
 
 use strict;<2>
 use warnings;<3>
-...
 ----
 
-<1> For UNIX/Linux, tell it what interpreter to use.
+<1> For UNIX/Linux, indicate what interpreter to use.
 <2> The `strict` pragma will catch many potential problems.
 <3> The `warnings` pragma will catch a few more.
 
@@ -590,6 +589,14 @@ $ perl script_name.pl
 $ chmod +x script_name.pl
 $ ./script_name.pl
 ----
+
+.For more information
+....
+man perlintro
+    perlrun
+perldoc strict
+        warnings
+....
 
 Geting Help
 -----------
