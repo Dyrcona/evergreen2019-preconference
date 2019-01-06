@@ -3,7 +3,7 @@ Perl
 
 image:perl.jpg[Slim Pickens as Major Kong]
 
-(Image Source: https://www.imdb.com/title/tt0057012/mediaviewer/rm3357313792[IMDB.com])
+(Image Source: https://m.media-amazon.com/images/M/MV5BMzM5MDQyNjI3Nl5BMl5BanBnXkFtZTcwMTA1MjE1Mg@@._V1_.jpg[IMDB.com/Amazon.com])
 
 Basic Syntax
 ------------
