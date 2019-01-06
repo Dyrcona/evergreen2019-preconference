@@ -4,3 +4,600 @@ Perl
 image:perl.jpg[Slim Pickens as Major Kong]
 
 (Image Source: https://www.imdb.com/title/tt0057012/mediaviewer/rm3357313792[IMDB.com])
+
+Basic Syntax
+------------
+
+[source,perl]
+----
+# Logout when program terminates. <1>
+END {<2>
+$script->logout();<3>
+}
+----
+
+<1> Comments start with a pound sign.
+<2> Blocks begin and end with braces, { and }.
+<3> Code lines end in semicolon.
+
+.For more information
+....
+man perlintro
+    perlsyn
+....
+
+Numbers
+-------
+
+[source,perl]
+----
+$var = 1;<1>
+$amount = 9.95;<2>
+$cr = 0x0D;<3>
+$lf = 012;<4>
+----
+
+<1> Integers can be written out literally.
+<2> Decimals can be written out literally.
+<3> Integers can be represented in hexadecimal notation.
+<4> Integers can be represented in octal notation.
+
+.For more information
+....
+man perlintro
+    perldata
+    perlnumber
+....
+
+Strings
+-------
+
+[source,perl]
+----
+$who = '$Jason';<1>
+print("$who stole the cookie from the cookie jar.\n");<2>
+----
+
+<1> Single quoted strings do not interpolate variables.
+<2> Double quoted strings do interpolate variable values.
+
+[role="incremental"]
+What does the above print?
+
+[role="incremental"]
+....
+$Jason stole the cookie from the cookie jar.
+....
+
+.For more information
+....
+man perlintro
+    perldata
+....
+
+Variables
+---------
+
+Perl has 3 main "types" of variables:
+
+* Scalars
+* Arrays
+* Hashes
+
+.For more information
+....
+man perlintro
+    perldata
+    perlvar
+....
+
+Scalars
+-------
+
+Scalars hold simple values.
+
+Their name is indicated by a $.
+
+[source,perl]
+----
+$var = 1;
+$who = 'Major Kong';
+----
+
+You access them directly.
+
+[source,perl]
+----
+print("$who rode the bomb.\n");<1>
+$var2 = $var + 1;<2>
+----
+
+<1> Prints "Major Kong rode the bomb."
+<2> $var2 = 2
+
+Arrays
+------
+
+Arrays hold sequential lists of values.
+
+Their name is indicated by a @.
+
+[source, perl]
+----
+@names = ('Strangelove', 'Mandrake', 'Muffley');
+@numbers = (1, 2, 3, 4);
+@mixed = ('String', 1, 'Another', 2, 3, 4);
+----
+
+Array members are accessed by index, starting with 0.
+
+[source,perl]
+----
+$who = $names[0]; # Strangelove
+$who = $names[1]; # Mandrake
+$who = $names[2]; # Muffley
+$names[4] = $mixed[0]; # String
+----
+
+You can add array members directly.
+
+Hashes
+------
+
+Hashes hold lists of values, indexed by a key which is converted to a string.
+
+A hash name is indicated by a %.
+
+[source,perl]
+----
+%film = (title => 'Dr. Strangelove',
+         'director' => "Stanley Kubrick",
+         "subtitle" => 'Or How I Learned to Stop Worrying and Love the Bomb');
+----
+
+Hash members are accessed by their key.
+
+[source,perl]
+----
+$who = $film{'director'};
+$film{runtime} = '1 hour 35 minutes';
+$film{"characters"} = @names;
+----
+
+You can add hash members directly, and they do not have to be scalar
+values.
+
+Sidebar: Sigils
+---------------
+
+[horizontal]
+*$*:: Scalar variable.
+*@*:: Array variable.
+*%*:: Hash variable.
+*&*:: Subroutine or function, rarely used.
+***:: Typeglob, rarely used.
+
+
+Variable Scope
+--------------
+
+[source,perl]
+----
+$attack_plan = "R";<1>
+$want_recall = 1;<1>
+if ($want_recall) {
+    my $recall_code = 'OPE';<2>
+    print $attack_plan;<3>
+    print $recall_code;<4>
+}
+print $attack_plan;<5>
+print $recall_code;<6>
+print $want_reclal;<7>
+----
+
+<1> Variales with no qualifier are global.
+<2> Variables with "my" are lexically scoped.
+<3> Prints "R"
+<4> Prints "OPE"
+<5> Prints "R"
+<6> Prints nothing; $recall_code is not in scope.
+<7> Prints nothing; $want_reclal has no value.
+
+use strict;
+-----------
+
+[source,perl]
+----
+use strict;<1>
+$attack_plan = "R";<2>
+my $want_recall = 1;<3>
+if ($want_recall) {
+    my $recall_code = 'OPE';<4>
+    print $attack_plan;<5>
+    print $recall_code;<6>
+}
+print $attack_plan;<7>
+print $recall_code;<8>
+print $want_reclal;<9>
+----
+
+<1> "use strict;" will turn on strict mode.
+<2> Lack of "my" is an error in strict mode.
+<3> $want_recall is scoped to the whole script.
+<4> $recall_code is scoped to the if block.
+<5> Generates an error.
+<6> Would print "OPE"
+<7> Generates an error.
+<8> Generates an error; $recall_code is not in scope.
+<9> Generates an error; $want_reclal is not in scope.
+
+Operators
+---------
+
+.For more information
+....
+man perlintro
+    perlop
+....
+
+
+Arithmetic Operations
+---------------------
+
+[horizontal]
+*+*:: Addition
+*-*:: Subtraction
+***:: Multiplication
+*/*:: Division
+
+Numeric Comparisons
+-------------------
+
+[horizontal]
+*==*:: Equality
+*!=*:: Inequality
+*<*:: Less Than
+*>*:: Greater Than
+*\<=*:: Less Than or Equal
+*>=*:: Greater Than or Equal
+*\<\=>*:: Comparison: -1, 0, or 1
+
+
+String Comparisons
+------------------
+
+[horizontal]
+*eq*:: Equality
+*ne*:: Inequality
+*lt*:: Less Than
+*gt*:: Greater Than
+*le*:: Less Than or Equal
+*ge*:: Greater Than or Equal
+*cmp*:: Comparison: -1, 0, or 1
+
+Boolean Logic
+-------------
+
+[horizontal]
+*&&*:: And
+*||*:: Or
+*!*:: Not
+
+You may also use the words, *and*, *or*, or *not*.
+
+Other Operators
+---------------
+
+[horizontal]
+*=*:: Assignment
+*.*:: Concatenation
+
+`man perlop` for even more operators!
+
+Conditionals/Loops
+------------------
+
+Perl has a number of mechanisms for program control.
+
+* if/elsif/else
+* while
+* for
+* do
+
+.For more information
+....
+man perlintro
+    perlsyn
+....
+
+Sidebar: True/False in Perl
+---------------------------
+
+[horizontal]
+*0*:: False
+*"0"*:: False
+*undef*:: False
+*empty string*:: False
+*empty list*:: False
+*any other value*:: True
+
+[source,perl]
+.Examples
+----
+my $a; # False: undefined value
+my $b = 0; # False: Zero
+my $c = -1; # True
+my $d = ''; # False
+my $e = 'something'; # True
+----
+
+if/elsif/else
+-------------
+
+[source,perl]
+----
+if ($some_condition) {
+    ...
+} elsif ($some_other_condition) {
+    ...
+} else {
+    ...
+}
+----
+
+[source,perl]
+.unless
+----
+unless ($some_condition) {
+    ...
+} else {
+    ...
+}
+# unless ($some_condition) same as:
+# if (!$some_condition)
+----
+
+while
+-----
+
+[source,perl]
+----
+while ($some_condition) {
+    ...
+}
+----
+
+[source,perl]
+.until
+----
+until ($some_condition) {
+    ...
+}
+----
+
+for
+---
+
+[source,perl]
+----
+for ($i = 0; $i < $some_limit; $i++) {
+    ...
+}
+
+for $item (@list) {
+    ...
+}
+----
+
+[source,perl]
+.foreach
+----
+foreach $item (@list) {
+    ...
+}
+----
+
+do
+--
+
+[source, perl]
+----
+do {
+    ...
+} while($some_condition);
+
+do {
+    ...
+} until ($some_condition);
+----
+
+.`do` is not a loop construct
+....
+perldoc -f do
+man perlsyn
+....
+
+Subroutines
+-----------
+
+[source,perl]
+.Using Subroutines
+----
+print "String\n";<1>
+my $result = length($name);<2>
+open(my $fh, ">", "report.txt");<3>
+if (open(my $fh, ">", "report.txt")) {<4>
+    # Write the report.
+    ...
+} else {
+    # Report/handle failure.
+    ...
+}
+----
+
+<1> We've seen print before; parenthesis optional.
+<2> Assign the return value to a variable.
+<3> Functions can take more than one argument.
+<4> Functions can be used in conditionals.
+
+.For more information
+....
+man perlsub
+    perlfunc
+....
+
+Subroutines
+-----------
+
+[source,perl]
+.Writing Subroutines
+----
+sub drop {<1>
+    my ($object, $target) = @_;<2>
+    if (aim($object, $target)) {
+        return $object->apply_effect($target);<3>
+    }
+    return 0;<4>
+}
+----
+
+<1> All subroutines/functions begin with `sub` keyword followed by the name and a block of implementation code.
+<2> Arguments are in the `@_` array.
+<3> You can return early to short circuit other code.
+<4> It's good to have a default return value.
+
+Regular Expressions
+-------------------
+
+[source,perl]
+----
+if ($name =~ /Zogg/) {<1>
+    ...
+}
+
+$name =~ s/Zogg/Kong/;<2>
+----
+
+<1> True if name contains Zogg.
+<2> Replace Zogg with Kong.
+
+.For more information
+....
+man perlrequick
+    perlretut
+    perlreref
+    perlre
+    perlop
+    perlfaq6
+....
+
+References
+----------
+
+[source,perl]
+----
+my $aref = \@array; # Array reference
+my $href = \%hash; # Hash reference
+my $sref = \$scalar; # Scalar reference
+my $fref = \&funcname; # Function reference
+
+# Access members of array reference:
+$aref->[0];
+$$aref[0];
+
+# Access members of hash reference:
+$href->{'key'};
+$$href{'key'};
+
+# Access value of scalar reference.
+$$sref;
+
+# Call function via reference.
+$fref->(@args);
+----
+
+.For more information
+....
+man perlreftut
+....
+
+Objects
+-------
+
+* Blessed references.
+* Usually implemented in modules.
+* Typically created via `new`.
+
+[source,perl]
+.Example
+----
+use Object;<1>
+
+my $obj = Object->new();<2>
+$obj->name("My Object");<3>
+print $obj->name, " is the name!\n";<4>
+----
+
+<1> Use the `Object` module.
+<2> Create a new object instance.
+<3> Set value of the `name` field.
+<4> Access the value of the `name` field.
+
+.For more information
+....
+man perlootut
+....
+
+Modules
+-------
+
+[source,perl]
+.Use Module
+----
+use Data::Dumper;
+use List::MoreUtils qw(any uniq);
+----
+
+.For more information
+....
+man perlmod
+    perlmodlib
+    perlmodinstall
+....
+
+Geting Help
+-----------
+
+.Install perl-doc on Debian/Ubuntu
+....
+sudo apt-get install perl-doc
+....
+
+.Manual Pages
+....
+man perlintro
+man perltoc
+man perldoc
+....
+
+.Lookup Built-in Perl Function
+....
+perldoc -f <funcname>
+ex.
+perldoc -f print
+....
+
+.Module Documentation
+....
+man Module::Name
+perldoc Module::Name
+ex.
+man Data::Dumper
+perldoc Data::Dumper
+....
+
+.Looking for a book?
+....
+man perlbook
+....
+
