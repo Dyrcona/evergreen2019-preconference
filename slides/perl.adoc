@@ -580,7 +580,7 @@ man perltoc
 man perldoc
 ....
 
-.Lookup Built-in Perl Function
+.Look Up Built-in Perl Function
 ....
 perldoc -f <funcname>
 ex.
