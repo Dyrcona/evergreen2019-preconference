@@ -28,7 +28,7 @@ OpenSRF::System->bootstrap_client(config_file=>"/openils/conf/opensrf_core.xml")
 
 # Create a session and connect in one call.  We need to be connected to use a transaction.
 my $session = OpenSRF::AppSession->connect('open-ils.cstore');
-# Create a database transation or die.
+# Create a database transaction or die.
 $session->request('open-ils.cstore.transaction.begin')->gather(1)
     || die("Cannot create transaction!");
 # Run the staging.purge_pending_users database function.
