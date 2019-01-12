@@ -12,6 +12,7 @@ Utilities
 * OpenILS::Utils::CStoreEditor
 * OpenILS::Utils::Fieldmapper
 * OpenILS::Utils::Normalize
+* OpenILS::Application::AppUtils
 
 Remember me?
 ------------
@@ -88,3 +89,9 @@ $editor->xact_begin;
 $editor->json_query({from=>["staging.purge_pending_users"]});
 $editor->commit;
 ----
+
+include::cronscript.adoc[]
+include::cstoreeditor.adoc[]
+include::fieldmapper.adoc[]
+include::normalize.adoc[]
+include::apputils.adoc[]
