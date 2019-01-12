@@ -11,7 +11,7 @@ Who am I?
 +
 image:kubrick-sellers2.jpg[Stanley Kubrick and Peter Sellers on the set of Dr. Strangelove]
 +
-(Image Source: https://m.media-amazon.com/images/M/MV5BYzIxNThmOTctNzdhNy00YjYwLWE4ZjctMGNhYTZjNTc5YjliXkEyXkFqcGdeQXVyODA1MDc5NjQ@._V1_SY1000_CR0,0,1394,1000_AL_.jpg[IMDB.com/Amazon.com])
+(Image Source: https://www.imdb.com/title/tt0057012/mediaviewer/rm1818382848[IMDB.com])
 
 
 Yes, You!

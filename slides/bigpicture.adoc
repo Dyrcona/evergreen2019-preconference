@@ -3,7 +3,7 @@ The Big Picture
 
 image:bigpicture.jpg[The Big Board in the War Room]
 
-(Image source: https://m.media-amazon.com/images/M/MV5BOGY0Mjk4OWYtMTRhZi00NmU2LWI3OWYtZWFiNGNmYWVmNjUxXkEyXkFqcGdeQXVyNjkxMjM5Nzc@._V1_.jpg[IMDB.com/Amazon.com])
+(Image source: https://www.imdb.com/title/tt0057012/mediaviewer/rm4022339072[IMDB.com])
 
 OpenSRF
 -------
