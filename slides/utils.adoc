@@ -1,0 +1,90 @@
+OpenILS::Utils
+--------------
+
+image:strangelove.jpg[Peter Sellers as Dr. Strangelove]
+
+(Image Source: https://www.imdb.com/title/tt0057012/mediaviewer/rm1366197248[IMDB.com])
+
+Utilities
+---------
+
+* OpenILS::Utils::Cronscript
+* OpenILS::Utils::CStoreEditor
+* OpenILS::Utils::Fieldmapper
+* OpenILS::Utils::Normalize
+
+Remember me?
+------------
+
+.Open-ILS/src/support-scripts/purge_pending_users.srfsh
+-----
+#!/openils/bin/srfsh
+open open-ils.cstore
+request open-ils.cstore open-ils.cstore.transaction.begin
+request open-ils.cstore open-ils.cstore.json_query {"from":["staging.purge_pending_users"]}
+request open-ils.cstore open-ils.cstore.transaction.commit
+close open-ils.cstore
+----
+
+Perl with OpenSRF
+-----------------
+
+[source,perl]
+----
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use OpenSRF::System;
+use OpenSRF::AppSession;
+
+OpenSRF::System->bootstrap_client(config_file=>"/openils/conf/opensrf_core.xml");
+
+my $session = OpenSRF::AppSession->create('open-ils.cstore');
+$session->connect();
+$session->request('open-ils.cstore.transaction.begin')->gather(1);
+$session->request('open-ils.cstore.json_query', {"from"=>["staging.purge_pending_users"]})->gather(1);
+$session->request('open-ils.cstore.transaction.commit')->gather(1);
+$session->disconnect();
+----
+
+See `purge_pending_users.pl` in the examples for a more complete implementation of this one.
+
+Perl with CStoreEditor
+----------------------
+
+[source,perl]
+----
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use OpenSRF::System;
+use OpenILS::Utils::CStoreEditor;
+
+OpenSRF::System->bootstrap_client(config_file => "/openils/conf/opensrf_core.xml");
+OpenILS::Utils::CStoreEditor::init();
+
+my $editor = OpenILS::Utils::CStoreEditor->new();
+$editor->xact_begin;
+$editor->json_query({from=>["staging.purge_pending_users"]});
+$editor->commit;
+----
+
+Perl with Cronscript
+--------------------
+
+[source,perl]
+----
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use OpenILS::Utils::Cronscript;
+
+my $script = OpenILS::Utils::Cronscript->new();
+my $editor = $script->editor();
+$editor->xact_begin;
+$editor->json_query({from=>["staging.purge_pending_users"]});
+$editor->commit;
+----
