@@ -555,10 +555,10 @@ Modules
 .Use Module
 ----
 use Data::Dumper;
-use List::MoreUtils qw(any uniq);
+use List::Util qw(any uniq);
 ...
-my @list = any { /$go_code/ } uniq @codes;
-if (@list) {
+my @list = uniq @codes;
+if (any {/$go_code/} @list) {
     print Dumper \@list;
 }
 ----
@@ -567,10 +567,10 @@ if (@list) {
 .The above, without Import
 ----
 use Data::Dumper;
-use List::MoreUtils;
+use List::Util;
 ...
-my @list = List::MoreUtils::any { /$go_code/ } List::MoreUtils::uniq @codes;
-if (@list) {
+my @list = List::Util::uniq @codes;
+if (List::Util::any { /$go_code/ } @list) {
     print Dumper \@list;
 }
 ----
@@ -588,13 +588,13 @@ Sidebar: :: vs. \->
 [source, perl]
 .:: is used to scope a variable or subroutine/function
 ----
-use List::MoreUtils;
+use List::Util;
 
 sub any {
 ...
 }
 
-List::MoreUtils::any { /regex/ } @list; # any from List::MoreUtils
+List::Util::any { /regex/ } @list; # any from List::Util
 any @list; # any from the local module
            # ::any is the same.
 ----
