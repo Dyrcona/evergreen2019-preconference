@@ -531,14 +531,14 @@ Objects
 [source,perl]
 .Example
 ----
-use Object;<1>
+use Does::Not::Exist::Object;<1>
 
-my $obj = Object->new();<2>
+my $obj = Does::Not::Exist::Object->new();<2>
 $obj->name("My Object");<3>
 print $obj->name, " is the name!\n";<4>
 ----
 
-<1> Use the `Object` module.
+<1> Use the `Does::Not::Exist::Object` module.
 <2> Create a new object instance.
 <3> Set value of the `name` field.
 <4> Access the value of the `name` field.
@@ -608,9 +608,9 @@ OpenSRF::System->bootstrap_client(config_file => "/openils/conf/opensrf_core.xml
 OpenSRF::System::bootstrap_client("OpenSRF::System",
                                   config_file => "/openils/conf/opensrf_core.xml");
 # From our object example:
-$object->name("My Object");
+$obj->name("My Object");
 # is the same as:
-Object::name($object, "My Object");
+Does::Not::Exist::Object::name($obj, "My Object");
 ----
 
 Scripts
