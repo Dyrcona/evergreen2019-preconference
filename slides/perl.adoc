@@ -556,6 +556,23 @@ Modules
 ----
 use Data::Dumper;
 use List::MoreUtils qw(any uniq);
+...
+my @list = any { /$go_code/ } uniq @codes;
+if (@list) {
+    print Dumper \@list;
+}
+----
+
+[source,perl]
+.The above, without Import
+----
+use Data::Dumper;
+use List::MoreUtils;
+...
+my @list = List::MoreUtils::any { /$go_code/ } List::MoreUtils::uniq @codes;
+if (@list) {
+    print Dumper \@list;
+}
 ----
 
 .For more information
@@ -564,6 +581,37 @@ man perlmod
     perlmodlib
     perlmodinstall
 ....
+
+Sidebar: :: vs. \->
+-------------------
+
+[source, perl]
+.:: is used to scope a variable or subroutine/function
+----
+use List::MoreUtils;
+
+sub any {
+...
+}
+
+List::MoreUtils::any { /regex/ } @list; # any from List::MoreUtils
+any @list; # any from the local module
+           # ::any is the same.
+----
+
+[source,perl]
+.\-> is "magic"
+----
+use OpenSRF::System;
+OpenSRF::System->bootstrap_client(config_file => "/openils/conf/opensrf_core.xml");
+# is the same as:
+OpenSRF::System::bootstrap_client("OpenSRF::System",
+                                  config_file => "/openils/conf/opensrf_core.xml");
+# From our object example:
+$object->name("My Object");
+# is the same as:
+Object::name($object, "My Object");
+----
 
 Scripts
 -------
