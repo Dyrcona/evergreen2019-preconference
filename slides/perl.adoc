@@ -634,3 +634,18 @@ perldoc Data::Dumper
 man perlbook
 ....
 
+Geting (More) Help
+------------------
+
+Errors?/Code not doing what you think it should?
+
+. Double check the documentation.
+. Look up error messages with your favorite search engine.
+. Ask in IRC
+.. #evergreen on Freenode
+.. #perl on Freenode
+
+See https://freenode.net/[Freenode.net] for information on connecting to IRC.
+
+Please, read http://www.catb.org/~esr/faqs/smart-questions.html[How To Ask Questions The Smart Way].
+
