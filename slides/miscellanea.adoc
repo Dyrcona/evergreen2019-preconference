@@ -1,0 +1,16 @@
+Miscellanea
+-----------
+
+image::zogg.jpg[James Earl Jones as Lt. Lothar Zogg]
+
+(Image source: https://www.imdb.com/name/nm0000469/mediaviewer/rm423245568[IMDB.com])
+
+MARC::File::XML
+---------------
+
+MARC::Record
+------------
+
+OpenILS::Utils::TestUtil
+------------------------
+
