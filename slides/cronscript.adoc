@@ -1,3 +1,229 @@
 OpenILS::Utils::Cronscript
 --------------------------
 
+Problems Solved
+[role="incremental"]
+* Initialization
+* Options
+* Lockfiles
+* Not _just_ for cron jobs!
+
+[role="incremental"]
+.For more information
+....
+perldoc OpenILS::Utils::Cronscript
+....
+
+Initialization
+--------------
+
+[source,perl]
+.As previously seen...
+----
+OpenSRF::System->bootstrap_client(config_file => "/openils/conf/opensrf_core.xml");
+OpenILS::Utils::CStoreEditor::init();
+----
+
+Cronscript does the above _almost always_ when you need it.
+
+[source,perl]
+.All we need with Cronscript.
+----
+use OpenILS::Utils::Cronscript;
+my $script = OpenILS::Utils::Cronscript->new();
+my $editor = $script->editor();
+----
+
+You _can_ bootstrap if you need to...
+
+[source,perl]
+----
+my $script = OpenILS::Utils::Cronscript->new();
+$script->bootstrap();
+----
+
+.When do you need to bootstrap?
+....
+No bootstrap config exists.  Have you bootstrapped?
+....
+
+Options
+-------
+
+Uses `Getopt::Long` Perl module.
+
+[source,perl]
+.Standard Options
+----
+'lock-file=s'   => OpenILS::Utils::Lockfile::default_filename,
+'osrf-config=s' => '@sysconfdir@/opensrf_core.xml',<1>
+'debug'         => 0,
+'verbose+'      => 0,
+'help'          => 0,
+----
+
+<1> `@sysconfdir@` is replaced by value of `--sysconfdir` configure option.
+
+[source,perl]
+.Changing Default Values
+----
+my %defaults = (
+    'verbose+' => 1
+);
+
+my $script = OpenILS::Utils::Cronscript->new(\%defaults);
+----
+
+.For more information
+....
+perldoc Getopt::Long
+....
+
+Options, Continued
+------------------
+
+[source,perl]
+.Adding your own options
+----
+my %defaults = (
+    "org-unit=i" => 1,
+    "username=s" => 'admin',
+    "password=s" => '',
+    "workstation=s" => 'BR1-Utility'
+);
+
+my $script = OpenILS::Utils::Cronscript->new(\%defaults);
+----
+
+[source,perl]
+.Getting Option Values
+----
+# After $script->bootstrap():
+print("Org. Unit ID: " . $script->first_defined('org-unit') . "\n")
+    if ($script->first_defined('verbose'));
+
+# Before $script->bootstrap():
+my $opts = $script->MyGetOptions();
+print("Org. Unit ID: " . $opts->{'org-unit'} . "\n")
+    if ($opts->{'verbose'});
+----
+
+Using Options
+-------------
+
+.Long Options
+....
+perl scriptname.pl --org-unit=2 --password=demo123 --lock-file=/tmp/action-trigger.LOCK
+....
+
+You can use single letter variants if there are no options with the same first letter.
+
+.Long and Short Options
+....
+perl scriptname.pl -p demo123 -v --org-unit=2
+....
+
+Lockfiles
+---------
+
+.Default Lockfile Name
+....
+/tmp/<scriptname>-LOCK
+....
+
+[source,perl]
+.Changing the Default Lockfile
+----
+my %defaults = (
+    'lock-file=s' => '/tmp/action-trigger-LOCK'
+);
+my $script = OpenILS::Utils::Cronscript->new(\%defaults);
+----
+
+.If Lockfile Exists
+....
+Script already running with lockfile /tmp/action-trigger-LOCK
+....
+
+[source,perl]
+.Sometimes You Don't
+----
+my %defaults = (
+    'nolockfile' => 0
+);
+my $script = OpenILS::Utils::Cronscript->new(\%defaults);
+----
+
+[source,perl]
+.Options Shortcut
+----
+my $script = OpenILS::Utils::Cronscript->new({nolockfile=>1});
+----
+
+Wait! There's more!
+-------------------
+
+[source,perl]
+.Authenticating
+----
+my $credentials = {
+    username => 'admin',
+    password => 'demo123',
+    type => 'staff',
+    workstation => 'BR1-workstation'
+};
+$script->authenticate($credentials);
+----
+
+[source,perl]
+.Command Line
+----
+my %defaults = (
+    username => 'admin',
+    password => 'demo123',
+    type => 'staff',
+    workstation => 'BR1-workstation'
+);
+my $script = OpenILS::Utils::Cronsript->new(\%defaults);
+my $opts = $script->MyGetOptions();
+my $authtoken = $script->authenticate($opts);
+----
+
+.Example
+....
+perl scriptname.pl --username=jstephenson --pasword=supersecretpassword --workstation=BR1-N240WU
+....
+
+And More!
+---------
+
+[source,perl]
+.Getting Your Authtoken
+----
+my $authtoken = $script->authtoken();
+----
+
+[source,perl]
+.Getting Your Authtime
+----
+my $authtime = $script->authtime();
+----
+
+[source,perl]
+.Logging Out of Your Session
+----
+$script->logout();
+----
+
+[source,perl]
+.Getting a CStoreEditor
+----
+my $editor = $script->editor();
+my $editor_with_auth = $script->editor(authtoken => $script->authtoken);
+----
+
+[source,perl]
+.Getting a Session With an OpenSRF Service
+----
+my $session = $script->session('open-ils.circ');
+----
