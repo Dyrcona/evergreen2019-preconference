@@ -91,8 +91,6 @@ $editor->commit;
 ----
 
 include::cronscript.adoc[]
-include::cstoreeditor.adoc[]
 include::fieldmapper.adoc[]
-include::normalize.adoc[]
+include::cstoreeditor.adoc[]
 include::apputils.adoc[]
-include::miscellanea.adoc[]
