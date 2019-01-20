@@ -16,3 +16,6 @@ MARC::Record
 OpenILS::Utils::TestUtil
 ------------------------
 
+OpenILS::Const
+--------------
+
