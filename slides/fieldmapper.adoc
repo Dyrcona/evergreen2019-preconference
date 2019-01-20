@@ -1,3 +1,58 @@
 OpenILS::Utils::Fieldmapper
 ---------------------------
 
+[source,perl]
+.Import
+----
+use OpenSRF::System;
+use OpenSRF::Utils::SettingsClient;
+use OpenILS::Utils::Fieldmapper;
+OpenSRF::System->bootstrap_client(config_file => '/openils/conf/opensrf_core.xml');
+Fieldmapper->import(IDL => OpenSRF::Utils::SettingsClient->new->config_value("IDL"));
+----
+
+*Bonus:* Cronscript does that for you when you bootstrap it.
+
+[source,perl]
+.Get List of Class Names
+----
+my @classes = Fieldmapper::classes();
+----
+
+[source,perl]
+.Get class for a hint
+----
+my $aou_class = Fieldmapper::class_for_hint('aou');
+----
+
+[source,perl]
+.Create Instance From a Class
+----
+my $aou_obj = $aou_class->new();
+----
+
+Usual Way To Instantiate an Object
+----------------------------------
+
+[source,perl]
+----
+my $item = Fieldmapper::asset::copy->new();
+$item->barcode('31234005678911');
+$item->call_number(OILS_PRECAT_CALL_NUMBER);
+$item->dummy_title('Red Alert');
+$item->dummy_author('Peter George');
+$item->circ_lib($user->home_ou());
+$item->circulate('t');
+$item->holdable('t');
+$item->opac_visible('f');
+$item->deleted('f');
+$item->fine_level(OILS_PRECAT_COPY_FINE_LEVEL);
+$item->loan_duration(OILS_PRECAT_COPY_LOAN_DURATION);
+$item->location(1);
+$item->status(0);
+$item->editor($user->id());
+$item->creator($user->id());
+$item->isnew(1);
+----
+
+
