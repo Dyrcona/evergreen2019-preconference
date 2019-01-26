@@ -55,8 +55,8 @@ $item->creator($user->id());
 $item->isnew(1);
 ----
 
-Side Bar: Fieldmapper and the IDL
----------------------------------
+Sidebar: Fieldmapper and the IDL
+--------------------------------
 
 ....
 <class id="ccs"
@@ -87,8 +87,8 @@ Side Bar: Fieldmapper and the IDL
 </class>
 ....
 
-Side Bar: Links
----------------
+Sidebar: Links
+--------------
 
 ....
 <links>
