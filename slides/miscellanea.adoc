@@ -13,9 +13,12 @@ MARC::File::XML
 MARC::Record
 ------------
 
+OpenILS::Const
+--------------
+
 OpenILS::Utils::TestUtil
 ------------------------
 
-OpenILS::Const
---------------
+OpenSRF::Utils::SettingsClient
+------------------------------
 
