@@ -87,6 +87,38 @@ Side Bar: Fieldmapper and the IDL
 </class>
 ....
 
+Side Bar: Links
+---------------
+
+....
+<links>
+  <link field="billing_address" reltype="has_a" key="id" map="" class="aoa"/>
+  <link field="holds_address" reltype="has_a" key="id" map="" class="aoa"/>
+  <link field="ou_type" reltype="has_a" key="id" map="" class="aout"/>
+  <link field="mailing_address" reltype="has_a" key="id" map="" class="aoa"/>
+  <link field="parent_ou" reltype="has_a" key="id" map="" class="aou"/>
+  <link field="ill_address" reltype="has_a" key="id" map="" class="aoa"/>
+  <link field="fiscal_calendar" reltype="has_a" key="id" map="" class="acqfc"/>
+  <link field="users" reltype="has_many" key="home_ou" map="" class="au"/>
+  <link field="closed_dates" reltype="has_many" key="org_unit" map="" class="aoucd"/>
+  <link field="children" reltype="has_many" key="parent_ou" map="" class="aou"/>
+  <link field="circulations" reltype="has_many" key="circ_lib" map="" class="circ"/>
+  <link field="settings" reltype="has_many" key="org_unit" map="" class="aous"/>
+  <link field="addresses" reltype="has_many" key="org_unit" map="" class="aoa"/>
+  <link field="checkins" reltype="has_many" key="checkin_lib" map="" class="circ"/>
+  <link field="workstations" reltype="has_many" key="owning_lib" map="" class="aws"/>
+  <link field="fund_alloc_pcts" reltype="has_many" key="org" map="" class="acqfap"/>
+  <link field="copy_location_orders" reltype="has_many" key="org" map="" class="acplo"/>
+  <link field="atc_prev_dests" reltype="has_many" key="prev_dest" map="" class="atc"/>
+  <link field="resv_requests" reltype="has_many" key="request_lib" map="" class="bresv"/>
+  <link field="resv_pickups" reltype="has_many" key="pickup_lib" map="" class="bresv"/>
+  <link field="rsrc_types" reltype="has_many" key="owner" map="" class="brt"/>
+  <link field="resources" reltype="has_many" key="owner" map="" class="brsrc"/>
+  <link field="rsrc_attrs" reltype="has_many" key="owner" map="" class="bra"/>
+  <link field="attr_vals" reltype="has_many" key="owner" map="" class="brav"/>
+  <link field="hours_of_operation" reltype="might_have" key="id" map="" class="aouhoo"/>
+</links>
+....
 
 Fielmapper Object Methods
 -------------------------
