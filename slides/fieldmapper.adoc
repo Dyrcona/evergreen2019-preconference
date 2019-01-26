@@ -125,4 +125,27 @@ Fielmapper Object Methods
 
 [source,perl]
 ----
+# Get the class name:
+my $var = $obj->class_name;
+
+# Get the primary ID field:
+my $id_field = $obj->Identity;
+
+# Get the database table:
+my $table_name = $obj->Table;
+
+# Get the list of controllers (arrayref):
+my $controllers = $obj->Controller;
+
+# Get the json_hint (IDL class id):
+my $hint = $obj->json_hint;
+
+# Make a copy of the object:
+my $copy = $obj->clone;
+
+# Export the fields to a hashref:
+my $hash = $obj->to_bare_hash;
+
+# Export the fields to a XML string:
+my $xml = $obj->toXML;
 ----
