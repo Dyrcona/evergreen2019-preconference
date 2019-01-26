@@ -55,4 +55,42 @@ $item->creator($user->id());
 $item->isnew(1);
 ----
 
+Side Bar: Fieldmapper and the IDL
+---------------------------------
 
+....
+<class id="ccs"
+       controller="open-ils.cstore open-ils.pcrud"
+       oils_obj:fieldmapper="config::copy_status"
+       oils_persist:tablename="config.copy_status"
+       oils_persist:restrict_primary="100"
+       reporter:label="Copy Status"
+       oils_persist:field_safe="true">
+    <fields oils_persist:primary="id" oils_persist:sequence="config.copy_status_id_seq">
+        <field name="holdable" reporter:datatype="bool"/>
+        <field name="id" reporter:selector="name" reporter:datatype="id"/>
+        <field name="name"  reporter:datatype="text" oils_persist:i18n="true"/>
+        <field name="opac_visible" reporter:datatype="bool"/>
+        <field name="copy_active" reporter:datatype="bool"/>
+        <field name="restrict_copy_delete" reporter:datatype="bool"/>
+        <field name="is_available" reporter:datatype="bool"/>
+    </fields>
+    <links/>
+    <permacrud xmlns="http://open-ils.org/spec/opensrf/IDL/permacrud/v1">
+        <actions>
+            <create permission="CREATE_COPY_STATUS" global_required="true"/>
+            <retrieve/>
+            <update permission="UPDATE_COPY_STATUS" global_required="true"/>
+            <delete permission="DELETE_COPY_STATUS" global_required="true"/>
+        </actions>
+    </permacrud>
+</class>
+....
+
+
+Fielmapper Object Methods
+-------------------------
+
+[source,perl]
+----
+----
