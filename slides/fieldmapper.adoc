@@ -11,7 +11,7 @@ OpenSRF::System->bootstrap_client(config_file => '/openils/conf/opensrf_core.xml
 Fieldmapper->import(IDL => OpenSRF::Utils::SettingsClient->new->config_value("IDL"));
 ----
 
-*Bonus:* Cronscript does that for you when you bootstrap it.
+*Bonus:* OpenILS::Utils::Cronscript does that for you when you bootstrap it.
 
 Sidebar: Fieldmapper and the IDL
 --------------------------------

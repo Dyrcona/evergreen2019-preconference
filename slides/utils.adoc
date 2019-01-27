@@ -9,9 +9,8 @@ Utilities
 ---------
 
 * OpenILS::Utils::Cronscript
-* OpenILS::Utils::CStoreEditor
 * OpenILS::Utils::Fieldmapper
-* OpenILS::Utils::Normalize
+* OpenILS::Utils::CStoreEditor
 * OpenILS::Application::AppUtils
 
 Remember me?
