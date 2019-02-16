@@ -29,7 +29,6 @@ Cronscript does the above _almost always_ when you need it.
 [source,perl]
 .All we need with Cronscript.
 ----
-use OpenILS::Utils::Cronscript;
 my $script = OpenILS::Utils::Cronscript->new();
 my $editor = $script->editor();
 ----
