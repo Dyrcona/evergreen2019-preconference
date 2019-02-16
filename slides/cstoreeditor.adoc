@@ -1,3 +1,88 @@
 OpenILS::Utils::CStoreEditor
 ----------------------------
 
+[source,perl]
+.Standard Way
+----
+use OpenSRF::System;
+use OpenILS::Utils::CStoreEditor;
+OpenSRF::System->bootstrap_client(config_file => "/openils/conf/opensrf_core.xml");
+OpenILS::Utils::CStoreEditor::init();
+my $editor = OpenILS::Utils::CStoreEditor->new();
+----
+
+[source,perl]
+.Function Interface
+----
+use OpenSRF::System;
+use OpenILS::Utils::CStoreEditor qw/funcs/;
+OpenSRF::System->bootstrap_client(config_file => "/openils/conf/opensrf_core.xml");
+OpenILS::Utils::CStoreEditor::init();
+my $editor = new_editor();
+my $reports_editor = new_rstore_editor();
+----
+
+[source,perl]
+.Or, with Cronscript.pm
+----
+use OpenILS::Utils::Cronscript;
+my $script = OpenILS::Utils::Cronscript->new();
+my $editor = $script->editor();
+----
+
+OpenILS::Utils::CStoreEditor
+----------------------------
+
+[source,perl]
+.Authtoken
+----
+my $authtoken = $script->authenticate($credentials);
+my $editor = $script->editor(authtoken=>$authtoken);
+----
+
+[source,perl]
+.Always Transaction
+----
+my $editor = $script->editor(xact=>1);
+----
+
+[source,perl]
+.Combination
+----
+my $editor = $script->editor(authtoken=>$authtoken,xact=>1);
+----
+
+Personalities
+-------------
+
+Correspond to controller in the IDL:
+
+* open-ils.cstore
+* open-ils.pcrud
+* open-ils.reporter-store
+
+[source,perl]
+.Get Personality
+----
+my $app = $editor->personality;
+----
+
+[source,perl]
+.Change Personality
+----
+$editor->personality('open-ils.pcrud');
+----
+
+[source,perl]
+.Specify Personality
+----
+# PCRUD Personality
+my $editor = $script->editor(personality=>'open-ils.pcrud');
+
+# Reporter Store Personality
+my $editor = $script->editor(personality=>'open-ils.reporter-store');
+
+# Combination
+my $editor = $script->editor(authtoken=>$authtoken,xact=>1,personality=>'open-ils.pcrud');
+----
+
