@@ -187,34 +187,29 @@ Something Missing?
 CStoreEditor does not use them, BUT other backend calls do.
 /BR/ Example: `open-ils.cat.asset.copy.fleshed.batch.update`
 
-Retrieving a Copy Status
-------------------------
+Getting Things
+--------------
 
 [source,perl]
+.Retrieving a Copy Status
 ----
 my $ccs = $editor->retrieve_config_copy_status(4);
 ----
 
-Batch Retrieving a Copy Status
-------------------------------
-
 [source,perl]
+.Batch Retrieving a Copy Status
 ----
-my $ccs_list = $editor->batch_retrieve_copy_status([4,5,6]);
+my $ccs_list = $editor->batch_retrieve_config_copy_status([4,5,6]);
 ----
 
-Retrieve All Copy Statuses
---------------------------
-
 [source,perl]
+.Retrieve All Copy Statuses
 ----
 my $ccs_list = $editor->retrieve_all_config_copy_status;
 ----
 
-Searching Copy Statuses
------------------------
-
 [source,perl]
+.Searching Copy Statuses
 ----
 my $ccs_list = $editor->search_config_copy_status({holdable => 'f'});
 # Or, just the ids:
