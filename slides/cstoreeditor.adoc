@@ -86,3 +86,146 @@ my $editor = $script->editor(personality=>'open-ils.reporter-store');
 my $editor = $script->editor(authtoken=>$authtoken,xact=>1,personality=>'open-ils.pcrud');
 ----
 
+
+CStoreEditor Generated Methods
+------------------------------
+
+* create
+* update
+* delete
+* retrieve
+* batch_retrieve
+* retrieve_all
+* search
+
+Remember me?
+------------
+
+....
+<class id="ccs"
+       controller="open-ils.cstore open-ils.pcrud"
+       oils_obj:fieldmapper="config::copy_status"
+       oils_persist:tablename="config.copy_status"
+       oils_persist:restrict_primary="100"
+       reporter:label="Copy Status"
+       oils_persist:field_safe="true">
+....
+
+.Methods for Copy Status
+* create_config_copy_status
+* update_config_copy_status
+* delete_config_copy_status
+* retrieve_config_copy_status
+* batch_retrieve_config_copy_status
+* retrieve_all_config_copy_status
+* search_config_copy_status
+
+
+Create a config.copy_status
+---------------------------
+
+[source,perl]
+----
+my $ccs = Fieldmapper::config::copy_status->new();
+$ccs->name('Red Alert');
+$ccs->holdable('f');
+$ccs->opac_visible('f');
+$ccs->copy_active('t');
+$ccs->restrict_copy_delete('t');
+$ccs->is_available('t');
+
+eval {
+    $editor->xact_begin();
+    $ccs = $editor->create_config_copy_status($ccs);
+    $editor->commit();
+};
+if ($@) {
+    die $@;
+}
+----
+
+Update a config.copy_status
+---------------------------
+
+[source,perl]
+----
+$ccs->restrict_copy_delete('f');
+eval {
+    $editor->xact_begin();
+    $ccs = $editor->update_config_copy_status($ccs);
+    $editor->commit();
+};
+if ($@) {
+    die $@;
+}
+----
+
+Delete a config.copy_status
+---------------------------
+
+[source,perl]
+----
+eval {
+    $editor->xact_begin();
+    $ccs = $editor->delete_config_copy_status($ccs);
+    $editor->commit();
+};
+if ($@) {
+    die $@;
+}
+----
+
+Something Missing?
+------------------
+
+[role="incremental"]
+* isnew
+* ischanged
+* isdeleted
+
+[role="incremental"]
+CStoreEditor does not use them, BUT other backend calls do.
+/BR/ Example: `open-ils.cat.asset.copy.fleshed.batch.update`
+
+Retrieving a Copy Status
+------------------------
+
+[source,perl]
+----
+my $ccs = $editor->retrieve_config_copy_status(4);
+----
+
+Batch Retrieving a Copy Status
+------------------------------
+
+[source,perl]
+----
+my $ccs_list = $editor->batch_retrieve_copy_status([4,5,6]);
+----
+
+Retrieve All Copy Statuses
+--------------------------
+
+[source,perl]
+----
+my $ccs_list = $editor->retrieve_all_config_copy_status;
+----
+
+Searching Copy Statuses
+-----------------------
+
+[source,perl]
+----
+my $ccs_list = $editor->search_config_copy_status({holdable => 'f'});
+# Or, just the ids:
+my $ccs_ids = $editor->search_config_copy_status({holdable => 'f'},{idlist=>1});
+----
+
+Limitations
+-----------
+
+* Doesn't always do the right thing.
+/BR/Example: Deleting copies. Better to use `open-ils.cat.asset.copy.fleshed.batch.update`
+* Can time out for large searches/tables.
+/BR/Example: Retrieving all copies.
+
