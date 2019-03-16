@@ -216,9 +216,32 @@ my $ccs_list = $editor->search_config_copy_status({holdable => 'f'});
 my $ccs_ids = $editor->search_config_copy_status({holdable => 'f'},{idlist=>1});
 ----
 
+Getting More Things
+-------------------
+
+[source,perl]
+.Getting Copies With Copy Status
+----
+my $acp_list = $editor->search_asset_copy(
+    [{circ_lib => 6, deleted => 'f'},
+     {flesh_depth => 1,
+      flesh_fields => {acp => ['status']}}]);
+----
+
+[source,perl]
+.Getting Copy Status from Call Numbers
+----
+my $acn_list = $editor->search_asset_call_number(
+    [{owning_lib => 6, deleted => 'f'},
+     {flesh_depth => 2,
+      flesh_fields => {acn => ['copies'],
+                       acp => ['status']}}]);
+----
+
 Limitations
 -----------
 
+* A way to do SQL without writing SQL.
 * Doesn't always do the right thing.
 /BR/Example: Deleting copies. Better to use `open-ils.cat.asset.copy.fleshed.batch.update`
 * Can time out for large searches/tables.
