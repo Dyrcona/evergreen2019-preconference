@@ -229,7 +229,7 @@ my $acp_list = $editor->search_asset_copy(
 ----
 
 [source,perl]
-.Getting Copy Status from Call Numbers
+.Getting Copy Status and Location from Call Numbers
 ----
 my $acn_list = $editor->search_asset_call_number(
     [{owning_lib => 6, deleted => 'f'},
