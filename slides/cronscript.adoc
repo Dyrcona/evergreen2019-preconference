@@ -148,7 +148,7 @@ Script already running with lockfile /tmp/action-trigger-LOCK
 .Sometimes You Don't
 ----
 my %defaults = (
-    'nolockfile' => 0
+    'nolockfile' => 1
 );
 my $script = OpenILS::Utils::Cronscript->new(\%defaults);
 ----
