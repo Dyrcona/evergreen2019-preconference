@@ -44,8 +44,8 @@ OpenSRF, continued
 * Accessible via various web gateways (Apache)
 [role="incremental"]
 ** gateway (deprecated)
-** osrf-http-translator (deprecated?)
 ** osrf-gateway-v1
+** osrf-http-translator
 ** osrf-websocket-translator
 ** xml-rpc
 * Programmable via a variety of languages
