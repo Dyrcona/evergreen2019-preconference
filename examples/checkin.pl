@@ -32,7 +32,6 @@ my %defaults = (
     'username=s' => '',
     'password=s' => '',
     'workstation=s' => '',
-    type => 'staff',
     nolockfile => 1
 );
 
