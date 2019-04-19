@@ -1,3 +1,114 @@
 OpenILS::Application::AppUtils
 ------------------------------
 
+Contains over 125 subroutines that can make your programming easier.
+
+We will only scratch the surface with some of the more useful
+subroutines.
+
+Using AppUtils
+--------------
+
+[source,perl]
+----
+use OpenILS::Application::AppUtils;
+# Make a shortcut to save some typing.
+my $U = 'OpenILS::Application::AppUtils';
+----
+
+[role="incremental"]
+Guess what?
+[role="incremental"]
+Cronscript.pm does the use line for us!
+
+
+Checking True/False Fields
+--------------------------
+
+[source,perl]
+.is_true
+----
+if ($U->is_true($copy->deleted) {
+    # Do something.
+}
+----
+
+OpenSRF Requests
+----------------
+
+[source,perl]
+.simplereq
+----
+my ($user, $event) = $U->fetch_user_by_barcode($barcode);
+if ($user && !$event) {
+    my $bills = $U->simplereq(
+        'open-ils.actor',
+        'open-ils.actor.user.transactions.history.have_balance',
+        $authtoken,
+        $user->id
+    );
+    # Do something $bills.
+}
+----
+
+Other Methods
+~~~~~~~~~~~~~
+
+* patientreq
+* cstorereq
+* storagereq
+* storagereq_xact
+
+Events
+------
+
+[source,perl]
+.is_event
+----
+if ($U->is_event($result)) {
+    # Do something with event.
+}
+----
+
+[source,perl]
+.event_code
+----
+if ($U->is_event($result)) {
+    print $U->event_code($result), "\n";
+}
+----
+
+User & Permissions
+------------------
+
+* check_user_perms
+* check_perms
+* check_user_session
+* fetch_user
+* user_has_work_perm_at
+
+Organizational Units & Settings
+-------------------------------
+
+* ou_ancestor_setting_value
+* ou_ancestor_setting
+* fetch_org_unit
+* find_org
+* find_org_by_shortname
+* get_org_descendants
+* get_org_ancestors
+* get_org_full_path
+* org_unit_ancestor_at_depth
+* get_org_unit_proximity
+* fetch_closed_date
+
+And Many More!
+--------------
+
+.For More Information
+....
+See the source code of
+Open-ILS/src/perlmods/lib/OpenILS/Application/AppUtils.pm for more
+useful methods.
+....
+
