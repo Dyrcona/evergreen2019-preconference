@@ -105,10 +105,10 @@ Organizational Units & Settings
 And Many More!
 --------------
 
-.For More Information
-....
+For More Information
+~~~~~~~~~~~~~~~~~~~~
 See the source code of
 Open-ILS/src/perlmods/lib/OpenILS/Application/AppUtils.pm for more
 useful methods.
-....
+
 
