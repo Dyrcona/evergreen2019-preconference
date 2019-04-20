@@ -14,6 +14,8 @@ subdirectory.  You probably do not need these as the latest, compiled
 version of the presentation is in the file `presentation.html` in the
 root of this repository.
 
+[View the presentation online.](https://htmlpreview.github.io/?https://github.com/Dyrcona/evergreen2019-preconference/blob/master/presentation.html)
+
 The `examples/` subdirectory contains the full source code of the
 example programs discussed in the presentation, except for those that
 are part of Evergreen, itself.
