@@ -16,7 +16,7 @@ use OpenILS::Const;
 # Search for checked out copies
 my $script = OpenILS::Utils::Cronscript->new({nolockfile=>1});
 my $editor = $script->editor();
-my $copies = $editor->search_asset_copy({status => OILS_COPY_STATUS_CHECKED_OUT});
+my $copies = $editor->search_asset_copy({circ_lib => 6, status => OILS_COPY_STATUS_CHECKED_OUT});
 ----
 
 Constants for Various Data Values
