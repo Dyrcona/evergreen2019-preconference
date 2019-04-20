@@ -159,11 +159,11 @@ my $script = OpenILS::Utils::Cronscript->new(\%defaults);
 my $script = OpenILS::Utils::Cronscript->new({nolockfile=>1});
 ----
 
-Wait! There's more!
--------------------
+Authenticating
+--------------
 
 [source,perl]
-.Authenticating
+.Hard-Coded Credentials
 ----
 my $credentials = {
     username => 'admin',
@@ -175,7 +175,7 @@ $script->authenticate($credentials);
 ----
 
 [source,perl]
-.Command Line
+.Via Command Line Options
 ----
 my %defaults = (
     username => 'admin',
@@ -193,8 +193,8 @@ my $authtoken = $script->authenticate($opts);
 perl scriptname.pl --username=jstephenson --pasword=supersecretpassword --workstation=BR1-N240WU
 ....
 
-And More!
----------
+Once Authenticated
+------------------
 
 [source,perl]
 .Getting Your Authtoken
@@ -215,14 +215,65 @@ $script->logout();
 ----
 
 [source,perl]
-.Getting a CStoreEditor
+.Getting an Authenticated CStoreEditor
 ----
-my $editor = $script->editor();
-my $editor_with_auth = $script->editor(authtoken => $script->authtoken);
+my $editor = $script->editor(authtoken => $script->authtoken);
 ----
+
+
+Making OpenSRF Calls
+--------------------
 
 [source,perl]
 .Getting a Session With an OpenSRF Service
 ----
-my $session = $script->session('open-ils.circ');
+my $session = $script->session('open-ils.cat');
 ----
+
+[source,perl]
+.Making a request
+----
+$copy->deleted('t');
+$copy->isdeleted(1);
+my $request = $session->request('open-ils.cat.asset.copy.fleshed.batch.update.override',
+    $authtoken,
+    [$copy],
+    0);
+----
+
+[source,perl]
+.Getting Results in One Go
+----
+my $results = $request->gather(1);
+if (ref($results) eq 'ARRAY') {
+    for my $result (@$results) {
+        my $content = $result->content;
+        # Do something with content
+    }
+} else {
+    my $content = $result->content;
+    # Do something with content
+}
+----
+
+Making OpenSRF Calls
+--------------------
+
+[source,perl]
+.Get Results One At a Time
+----
+my $cstoreses = $script->session('open-ils.cstore');
+my $cstorereq = $cstoreses->request('open-ils.cstore.direct.asset.copy.search',
+                                    {circ_lib=>$org->id(), deleted=>'f'},
+                                    {flesh=>1, flesh_fields=>{acp=>['circulations']}});
+while (my $cstoreres = $cstorereq->recv(timeout=>600)) {
+    my $copy = $cstoreres->content;
+    if (@{$copy->circulations}) {
+        # Do something with the circulations.
+    }
+    # Do something with $copy, like maybe delete it.
+}
+$cstorereq->finish();
+$cstoreses->disconnect();
+----
+
