@@ -44,5 +44,6 @@ foreach my $event (<>) {
     chomp($event);
     print ("open-ils.trigger.event.fire $event\n");
     my $result = $ses->request('open-ils.trigger.event.fire', $event)->gather(1);
-    print("Valid: " . $result->{valid} . "\n\n");
+    $event = $result->{event};
+    printf("%d State: %s\n", $event->id, $event->state);
 }
